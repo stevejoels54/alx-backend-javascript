@@ -16,8 +16,7 @@ app.get('/students', (req, res) => {
       res.send(`This is the list of our students\n${data}`);
     })
     .catch((error) => {
-      console.error('Error:', error);
-      res.status(500).send('Internal Server Error');
+      res.status(500).send(`This is the list of our students\n${error.message}`);
     });
 });
 
