@@ -51,4 +51,43 @@ describe('sendPaymentRequestToApi', function() {
             done();
         });
     });
+
+    // test for available_payments
+    it('Should return available payments', function(done) {
+        const url = 'http://localhost:7865';
+        request(url + '/available_payments', function(error, response, body) {
+            if (error) {
+                done(error);
+            }
+            const expected = {
+                payment_methods: {
+                    credit_cards: true,
+                    paypal: false,
+                },
+            };
+            expect(response.statusCode).to.equal(200);
+            expect(JSON.parse(body)).to.eql(expected);
+            done();
+        });
+    });
+
+    // test for login
+    it('Should return Welcome username', function(done) {
+        const url = 'http://localhost:7865';
+        const options = {
+            url: url + '/login',
+            method: 'POST',
+            json: {
+                userName: 'Betty',
+            },
+        };
+        request(options, function(error, response, body) {
+            if (error) {
+                done(error);
+            }
+            expect(response.statusCode).to.equal(200);
+            expect(body).to.equal('Welcome Betty');
+            done();
+        });
+    });
 });
