@@ -25,4 +25,17 @@ describe('sendPaymentRequestToApi', function() {
             done();
         });
     });
+
+    // test for invalid path
+    it('Should return 404 for invalid path', function(done) {
+        const url = 'http://localhost:7865';
+        request(url + '/cart', function(error, response, body) {
+            if (error) {
+                done(error);
+            }
+            expect(response.statusCode).to.equal(404);
+            expect(body).to.include('Cannot GET /cart');
+            done();
+        });
+    });
 });
