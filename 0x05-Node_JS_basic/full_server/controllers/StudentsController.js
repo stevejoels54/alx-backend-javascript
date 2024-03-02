@@ -22,7 +22,7 @@ class StudentsController {
 
   static async getAllStudentsByMajor(req, res) {
     try {
-      const studentsByField = await readDatabase('database.csv');
+      const studentsByField = await readDatabase(process.argv[2]);
       const { major } = req.params;
 
       if (studentsByField[major]) {
