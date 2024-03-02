@@ -9,7 +9,7 @@ app.use('/students', router);
 app.use('/students/:major', router);
 
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
 
 module.exports = app;
